@@ -1,5 +1,6 @@
 package game.scene;
 
+import game.gameObjects.Camera;
 import game.gameObjects.GameObject;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class BackgroundObject extends GameObject {
     }
 
     @Override
-    public void render(Graphics g) {
-        g.drawImage(image,0,0,null);
+    public void render(Graphics g, Camera c) {
+        g.drawImage(image, -c.x,-c.y,null);
     }
 }

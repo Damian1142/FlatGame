@@ -7,10 +7,11 @@ import game.scene.Scene;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class Game extends JPanel{
 
-    private Timer timer;
+    public Timer timer;
     private JFrame window;
 
 
@@ -51,7 +52,11 @@ public class Game extends JPanel{
     }
 
     public void paint(Graphics g) {
-        aScene.render(g);
+        try {
+            aScene.render(g);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void update(){

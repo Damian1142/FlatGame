@@ -1,19 +1,24 @@
 package game.scene;
 
+import game.StaticObjects;
 import game.input.Input;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class MenuScene extends Scene{
     private int bh = fh / 21;
+    private GameScene gs;
 
     @Override
-    public void render(Graphics g) {
+    public void render(Graphics g) throws IOException {
         g.setColor(new Color(0xFF8C00));
         g.fillRect(0,0, fw,fh);
         drawButtonsOnCenterX(g);
         int mx = Input.x, my = Input.y;
+
 
         if ((mx > fw * 3 /8 && mx < fw * 5 /8 ) && (my > bh && my < 5 * bh)){
             int borderSize = fw * 2 / 8 / 40;
@@ -22,6 +27,10 @@ public class MenuScene extends Scene{
             g.fillRect(fw * 3 /8,bh,fw * 2 /8,borderSize);
             g.fillRect(fw * 3 /8,bh * 5 - borderSize,fw * 2 /8,borderSize);
             g.fillRect(fw * 5 /8 - borderSize,bh,borderSize,4 * bh);
+            if (Input.mClicked) {
+                gs = new GameScene();
+                StaticObjects.game.setScene(gs);
+            }
         }
         g.setFont(new Font("Arial",Font.BOLD,fw * 2 / 8 / 10));
         g.setColor(Color.BLACK);
